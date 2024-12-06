@@ -10,12 +10,13 @@ class ProductService {
     private val products = mutableListOf<Product>()
     private val idCounter = AtomicLong(1)
 
-    fun createProduct(name: String, type: ProductType, inventory: Int): Product {
+    fun createProduct(name: String, type: ProductType, inventory: Int, cost : Int): Product {
         val product = Product(
                 id = idCounter.getAndIncrement(),
                 name = name,
                 type = type,
-                inventory = inventory
+                inventory = inventory,
+                cost = cost
 
         )
         products.add(product)

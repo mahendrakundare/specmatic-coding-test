@@ -16,7 +16,8 @@ class Products(private val productService: ProductService) {
         val product = productService.createProduct(
                 name = request.name,
                 type = request.type,
-                inventory = request.inventory
+                inventory = request.inventory,
+                cost = request.cost
         )
         return ResponseEntity.status(201).body(CreateProductResponse(product.id))
     }
@@ -36,7 +37,8 @@ class Products(private val productService: ProductService) {
                     id = product.id,
                     name = product.name,
                     type = product.type,
-                    inventory = product.inventory
+                    inventory = product.inventory,
+                    cost = product.cost
             )
         }
     }
