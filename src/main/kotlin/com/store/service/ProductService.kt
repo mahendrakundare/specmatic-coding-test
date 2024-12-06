@@ -1,0 +1,33 @@
+package com.store.service
+
+import com.store.model.Product
+import com.store.model.ProductType
+import org.springframework.stereotype.Service
+import java.util.concurrent.atomic.AtomicLong
+
+@Service
+class ProductService {
+    private val products = mutableListOf<Product>()
+    private val idCounter = AtomicLong(1)
+
+    fun createProduct(name: String, type: ProductType, inventory: Int): Product {
+        val product = Product(
+                id = idCounter.getAndIncrement(),
+                name = name,
+                type = type,
+                inventory = inventory
+
+        )
+        products.add(product)
+        return product
+    }
+
+    fun getProductsByType(type: ProductType): List<Product> {
+        return products.filter { it.type == type }
+    }
+
+    fun getAllProducts(): List<Product> {
+        return products;
+    }
+
+}
